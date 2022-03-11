@@ -181,7 +181,7 @@ unsafe fn uniq_process_JumpSquat_exec_status(fighter: &mut L2CFighterCommon) -> 
 unsafe fn status_JumpSquat_common(fighter: &mut L2CFighterCommon, lr_update: L2CValue) {
     let is_button_jump = WorkModule::get_int(fighter.module_accessor, *FIGHTER_INSTANCE_WORK_ID_INT_STICK_JUMP_COMMAND_LIFE) == 0
                                 || fighter.global_table[FLICK_Y_DIR].get_i32() <= 0;
-    BufferModule::set_persist_lifetime(fighter.battle_object, 10);
+    BufferModule::set_persist_lifetime(fighter.battle_object, 15);
     BufferModule::enable_persist(fighter.battle_object);
     if is_button_jump {
         //println!("button jump");
