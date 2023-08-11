@@ -21,7 +21,7 @@ unsafe fn set_fuse_params(weapon: &mut L2CFighterBase) {
         VarModule::set_int(link_object,vars::link::instance::FUSE_TYPE,0);
         VarModule::set_int(link_object,vars::link::instance::FUSED_ITEM_POST_STATUS,*ITEM_BOMBER_STATUS_KIND_BORN2);
     }
-    if kind == *ITEM_KIND_LINKBOMB {
+    else if kind == *ITEM_KIND_LINKBOMB {
         VarModule::set_int(link_object,vars::link::instance::FUSE_TYPE,0);
         VarModule::set_int(link_object,vars::link::instance::FUSED_ITEM_POST_STATUS,*ITEM_STATUS_KIND_BORN);
     }
@@ -47,7 +47,18 @@ pub unsafe fn arrow_haved_main(weapon: &mut L2CFighterBase) -> L2CValue {
     let link_object = utils::util::get_battle_object_from_id(owner_id);
     if ItemModule::is_have_item(owner_module_accessor,0) {
         set_fuse_params(weapon);
-        VarModule::on_flag(link_object,vars::link::instance::IS_ARROW_FUSED);
+        let trait_flag = ItemModule::get_have_item_trait(owner_module_accessor,0);
+        let kind = ItemModule::get_have_item_kind(owner_module_accessor,0);
+        if kind != *ITEM_KIND_NONE
+        && kind != *ITEM_KIND_ASSIST
+        && trait_flag != *ITEM_TRAIT_FLAG_SWING as u64
+        && trait_flag != *ITEM_TRAIT_FLAG_SHOOT as u64
+        && trait_flag != *ITEM_TRAIT_FLAG_NONE as u64 {
+            VarModule::on_flag(link_object,vars::link::instance::IS_ARROW_FUSED);
+        }
+        else {
+            VarModule::off_flag(link_object,vars::link::instance::IS_ARROW_FUSED);
+        }
     }
     else {
         VarModule::off_flag(link_object,vars::link::instance::IS_ARROW_FUSED);
