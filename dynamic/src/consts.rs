@@ -508,21 +508,6 @@ pub mod vars {
         pub const SPECIAL_HI_JUMP_RESERVE_ACTION_FALL: i32 = 0x2;
     }
 
-    pub mod falco {
-        pub mod instance {
-            // flags
-            pub const SPECIAL_LW_DISABLE_STALL: i32 = 0x0100;
-        }
-        pub mod status {
-            // flags
-            pub const SET_ATTACK: i32 = 0x1100;
-            pub const SET_EFFECT: i32 = 0x1101;
-
-            // ints
-            pub const SPECIAL_LW_STOP_Y_FRAME: i32 = 0x1100;
-        }
-    }
-
     pub mod ganon {
         pub mod instance {
             // flags
@@ -602,6 +587,19 @@ pub mod vars {
             // ints
             pub const FIREBALL_COOLDOWN_FRAME: i32 = 0x0100;
             pub const FIREBALL_EFFECT_ID: i32 = 0x0101;
+            pub const FUSE_TYPE: i32 = 0x0102; // -0 for normal, 1 for speed+power
+        }
+    }
+
+    pub mod link {
+        pub mod instance {
+            //ints
+            pub const FUSED_ITEM_ID: i32 = 0x0100;
+            pub const FUSED_ITEM_POST_STATUS: i32 = 0x0101;
+            pub const FUSE_TYPE: i32 = 0x0102;
+
+            //flags
+            pub const IS_ARROW_FUSED: i32 = 0x0100;
         }
     }
 
@@ -1224,11 +1222,6 @@ pub mod vars {
 pub mod statuses {
     pub mod elight {
         pub const SPECIAL_HI_FINISH2: i32 = 0;
-    }
-
-    pub mod falco {
-        pub const SPECIAL_LW_LOOP: i32 = 0;
-        pub const SPECIAL_LW_END: i32 = 1;
     }
 
     pub mod ganon {
